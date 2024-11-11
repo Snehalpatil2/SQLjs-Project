@@ -1,0 +1,190 @@
+h2 {
+  text-align: left;
+}
+
+table {
+  /* width: 100%; */
+  border-collapse: collapse;
+}
+
+#table-list{
+  border:1px #000;
+  padding-top: 2%;
+}
+
+/* .anch {
+  font-size:xx-small;
+  margin-left: 150px;
+  display: inline-table;
+  width: 500px;
+  height: 21px;
+  padding: 5px;
+  border: 1px groove black;
+  font-family:monospace;
+  text-decoration-line: none;
+  color: black;
+} */
+
+/* #studinfo,
+#subject,
+#stud_sub {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+} */
+
+/* #studinfo-input,
+#subject-input,
+#studsub-input {
+  grid-area: 1 / 1 / 2 / 2;
+  margin: 0 2% 2% 5%;
+} */
+
+/* #output-section,
+#subject-output-section,
+#studsub-output-section {
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 0 5% 2% 2%;
+} */
+
+th,
+td {
+  margin: 2% 4% 2%;
+  border: 1px solid black;
+}
+
+#stdin,
+#subin,
+#studsubin {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  /* font-family: Arial, sans-serif; */
+  margin: 20px;
+}
+
+.container {
+  position: relative;
+}
+
+.dropdown {
+  padding-left: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 75%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  /* Hide dropdown initially */
+}
+
+.dropdown li {
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown li:hover {
+  background-color: #f1f1f1;
+}
+
+ /* The sidepanel menu */
+ .sidepanel {
+  height: 100%; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .sidepanel-close {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.sidepanel-open {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.sidepanel-open:hover {
+  background-color: #444;
+} 
+
+.pagination{
+  display: inline-block;
+  margin-top: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a:hover{
+  cursor: pointer;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+#query-parent{
+  display:inline-flex;
+  justify-content: space-between;
+  width: 55%;
+}
+#query-box{
+  padding: 0;
+  margin: 0;
+}
