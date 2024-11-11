@@ -1,0 +1,85 @@
+h2 {
+  text-align: left;
+}
+
+table {
+  /* width: 100%; */
+  border-collapse: collapse;
+}
+
+/* #studinfo,
+#subject,
+#stud_sub {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+} */
+
+/* #studinfo-input,
+#subject-input,
+#studsub-input {
+  grid-area: 1 / 1 / 2 / 2;
+  margin: 0 2% 2% 5%;
+} */
+
+/* #output-section,
+#subject-output-section,
+#studsub-output-section {
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 0 5% 2% 2%;
+} */
+
+th,
+td {
+  margin: 2% 4% 2%;
+  border: 1px solid black;
+}
+
+#stdin,
+#subin,
+#studsubin {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.container{
+  position: relative;
+}
+
+.dropdown {
+  padding-left: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 75%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  /* Hide dropdown initially */
+}
+
+.dropdown li {
+  padding: 5px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown li:hover {
+  background-color: #f1f1f1;
+}
