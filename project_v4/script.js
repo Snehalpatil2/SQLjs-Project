@@ -140,30 +140,97 @@ function renderHeader(tablename, renderedPages) {
 	renderData(tablename, renderedPages);
 }
 
+// function runQuery(event) {
+// 	// console.log(event);
+// 	const query = document.getElementById(`query-input`).value;
+// 	console.log(query);
+// 	if (query != "") {
+// 		const regexp = /(?<=from)(.*?)(?=where)/g
+// 		const query_table = query
+// 			.match(regexp)[0]
+// 			.split(",")
+// 			.map((tablename, index) => {
+// 				return tablename.trim();
+// 			});
+// 		console.log(query_table);
+// 		const table_attr = query_table.map((element, index) => {
+// 			const tabname = element.split(" ")[0];
+// 			const res = db.exec(`PRAGMA table_info(${tabname});`);
+// 			const cols = res[0].values.map((colArr, id)=>{
+// 				return colArr[1];
+// 			});
+// 			return cols;
+// 		});
+// 		console.log(table_attr);
+
+// 	}
+// }
+
+function returnTables(query) {
+
+}
+
 function runQuery(event) {
-	// console.log(event);
-	const query = document.getElementById(`query-input`).value;
-	console.log(query);
-	if (query != "") {
-		const regexp = /(?<=from)(.*?)(?=where)/g
-		const query_table = query
+	const query = document.getElementById('query-input').value;
+	console.log('Original Query:', query);
+	let table_attr;
+	let query_table;
+	if (query.indexOf("SELECT") != -1) {
+		const regexp = /(?<=from\s)(.*?)(?=;$|\swhere|\sWHERE|\sGROUP\sBY|\sgroup\sby|\sEND|\send|$)/g;
+		query_table = query
 			.match(regexp)[0]
 			.split(",")
-			.map((tablename, index) => {
-				return tablename.trim();
+			.map((tablename) => tablename.trim());
+		console.log("Tables found in query:", query_table);
+	}
+	else if (query.indexOf("ALTER") != -1) {
+		const regexp = /(?<=TABLE|table\s)(.*)(?=\sDROP|\sdrop|\sSET|\sset|\sADD|\sadd|\sRENAME|\srename|\sENABLE|\senable|\sDISABLE|\sdisable|\sMODIFY|\smodify)/g;
+		console.log(query.match(regexp));
+	}
+	else if (query.indexOf("UPDATE") != -1) {
+		const regexp = /(?<=UPDATE|update\s)(.*)(?=\sSET|\sset)/g;
+		console.log(query.match(regexp));
+	}
+	else if (query.indexOf("DELETE") != -1) {
+		const regexp = /(?<=FROM|from\s)(.*?)(?=\swhere|\sWHERE|;$|$)/g;
+		console.log(query.match(regexp));
+
+	}
+	let modifiedQuery = query;
+
+	table_attr = query_table.map((tablename) => {
+		const tableName = tablename.split(" ");
+		const res = db.exec(`PRAGMA table_info(${tableName[0]});`);
+		if (tableName[1]) {
+			//alias exist
+			const regexp = new RegExp(`/(${tableName[1]}.c\d)/g`);
+			modifiedQuery = modifiedQuery.replace(regexp, (match) => {
+				console.log("Match is ", match);
+				// const placeholder = match;
+				// const columnIndex = parseInt(placeholder.slice(1));
+				// for (let { tableName, cols } of table_attr) {
+				// 	if (columnIndex < cols.length) {
+				// 		return cols[columnIndex];
+				// 	}
+				// }
+				// return placeholder;
 			});
-		console.log(query_table);
-		const table_attr = query_table.map((element, index) => {
-			const tabname = element.split(" ")[0];
-			const res = db.exec(`PRAGMA table_info(${tabname});`);
-			const cols = res[0].values.map((colArr, id)=>{
-				return colArr[1];
-			});
-			return cols;
-		});
-		console.log(table_attr);
+		}
+		const cols = res[0].values.map((colArr) => colArr[1]);
+		return { tableName, cols };
+	});
+	console.log("Columns for each table:", table_attr);
+
+	const placeholderRegex = /\b(c\d+)\b/g;
+	
+	console.log("Modified Query:", modifiedQuery);
+	if (query != "") {
+
+		// You can now run the modifiedQuery or return it for further processing
 	}
 }
+
+
 
 function pagination(tablename) {
 	const res = db.exec(`SELECT COUNT(id) from ${tablename};`);
